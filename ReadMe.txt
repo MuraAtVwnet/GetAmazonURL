@@ -11,7 +11,6 @@ Amazon URL をクリップボードにコピーして、PowerShell プロンプ�
 ■ Install 方法
 install.ps1 を実行してください
 
-
 ■ Uninstall 方法
 uninstall.ps1 を実行して下さい
 (問い合わせが来たら Enter)
