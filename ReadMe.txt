@@ -22,9 +22,8 @@ PowerShell 5.1
 PowerShell 7.x
 
 ■ Web サイト
-
-入力した日付を曜日付きの年月日に変換する PowerShell スクリプト
-http://www.vwnet.jp/Windows/PowerShell/2019021501/AppointDate.htm
+PowerShell で Amazon URL を必要部分のみにする
+http://www.vwnet.jp/windows/PowerShell/2022091801/GetAmazonURL.htm
 
 ■ リポジトリ
 GitHub で公開しているので、最新版が欲しい方はこちらから Clone してください。
