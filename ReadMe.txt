@@ -4,6 +4,8 @@
 Amazon の URL はノイズだらけなので、必要な部分だけを取り出します
 amazon.co.jp と amazon.com に対応しています
 
+Windows 上でしか動作確認していませんが、Mac Linux でも動くと思います
+
 ■ 使い方
 Amazon URL をクリップボードにコピーして、PowerShell プロンプト で GetAmazonURL と入力してください
 必要部分だけの URL がクリップボードにセットされます
@@ -25,9 +27,9 @@ PowerShell 7.x
 http://www.vwnet.jp/Windows/PowerShell/2019021501/AppointDate.htm
 
 ■ リポジトリ
-GitHub でも公開しているので、最新版が欲しい方はこちらから Clone してください。
+GitHub で公開しているので、最新版が欲しい方はこちらから Clone してください。
 
-https://github.com/MuraAtVwnet/SetPrefix4URI
-git@github.com:MuraAtVwnet/SetPrefix4URI.git
+https://github.com/MuraAtVwnet/GetAmazonURL
+git@github.com:MuraAtVwnet/GetAmazonURL.git
 
 

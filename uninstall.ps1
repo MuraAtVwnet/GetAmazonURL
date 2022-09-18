@@ -1,13 +1,11 @@
-# モジュール名
+# Module Name
 $ModuleName = "GetAmazonURL"
 
-# モジュール Path
+# Module Path
 $ModulePath = Join-Path (Split-Path $PROFILE -Parent) "Modules"
-
-# モジュールを配置する Path
 $RemovePath = Join-Path $ModulePath $ModuleName
 
-# ディレクトリ削除
+# Remove Direcory
 if( Test-Path $RemovePath ){
 	Remove-Item $RemovePath -Force -Recurse
 }

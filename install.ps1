@@ -1,18 +1,15 @@
-# モジュール名
+# Module Name
 $ModuleName = "GetAmazonURL"
 
-# モジュール Path
+# Module Path
 $ModulePath = Join-Path (Split-Path $PROFILE -Parent) "Modules"
-
-# モジュールを配置する Path
 $NewPath = Join-Path $ModulePath $ModuleName
 
-# ディレクトリ作成
+# Make Directory
 if( -not (Test-Path $NewPath)){
 	md $NewPath
 }
 
-# モジュールのコピー
+# Copy Module
 $ModuleFileName = Join-Path $PSScriptRoot ($ModuleName + ".psm1")
-
 copy $ModuleFileName $NewPath
