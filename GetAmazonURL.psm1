@@ -6,17 +6,17 @@ function GetAmazonURL(){
 	if( $FullURL.Contains("/product/") ){
 		$dummy = $FullURL -match "/product/(?<DPUrl>.+?)/"
 		if($dummy -eq $false ){
-			$dummy = $FullURL -match "/product/(?<DPUrl>.+?)\?"
+			$dummy = $FullURL -match "/product/(?<DPUrl>.+?)$"
 		}
-		$DPUrl = "/dp/" + $Matches.DPUrl
 	}
 	else{
-		$dummy = $FullURL -match "(?<DPUrl>/dp/.+?)/"
+		$dummy = $FullURL -match "/dp/(?<DPUrl>.+?)/"
 		if($dummy -eq $false ){
-			$dummy = $FullURL -match "(?<DPUrl>/dp/.+?)\?"
+			$dummy = $FullURL -match "/dp/(?<DPUrl>.+?)$"
 		}
-		$DPUrl = $Matches.DPUrl
 	}
+
+	$DPUrl = "/dp/" + $Matches.DPUrl
 
 	$dummy = $FullURL -match "(?<AmazonUrl>https://.+?)/"
 	$AmazonUrl = $Matches.AmazonUrl
