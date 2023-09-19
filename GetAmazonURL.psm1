@@ -6,48 +6,58 @@ function GetAmazonURL([switch]$Check){
 	$SakuraURL = "https://sakura-checker.jp/search/"
 
 	$FullURL = Get-Clipboard
-	if( ($FullURL -match "(?<GoodsUrl>https://www`.amazon`.co`.jp/dp/.+/?)") -or ($FullURL -match "(?<GoodsUrl>https://www`.amazon`.com/dp/.+/?)")){
-		$GoodsUrl =  $Matches.GoodsUrl
-		$dummy = $FullURL -match "/dp/(?<DPUrl>.+?)$"
-		$DP = $Matches.DPUrl
-	}
-	else{
+	if(($FullURL -match "https://www\.amazon\.co\.jp") -or ($FullURL -match "https://www\.amazon\.com")){
 		if( $FullURL.Contains("/product/") ){
-			$dummy = $FullURL -match "/product/(?<DPUrl>.+?)/"
-			if($dummy -eq $false ){
-				$dummy = $FullURL -match "/product/(?<DPUrl>.+?)$"
+			if(($FullURL -match "/product/(?<DPUrl>.+?)/") -or ($FullURL -match "/product/(?<DPUrl>.+?)$")){
+				#NOP
+			}
+		}
+		elseif( $FullURL.Contains("/dp/") ){
+			if( ($FullURL -match "/dp/(?<DPUrl>.+?)/") -or ($FullURL -match "/dp/(?<DPUrl>.+?)$") ){
+				#NOP
 			}
 		}
 		else{
-			$dummy = $FullURL -match "/dp/(?<DPUrl>.+?)/"
-			if($dummy -eq $false ){
-				$dummy = $FullURL -match "/dp/(?<DPUrl>.+?)$"
-			}
+			echo "This is not a product page"
+			return
 		}
 
+
 		$DP = $Matches.DPUrl
+		if( ($DP -match "(?<DPUrl>.+?)\?ref") -or ($DP -match "(?<DPUrl>.+?)/ref") -or ($DP -match "(?<DPUrl>.+?)/pf_rd") -or ($DP -match "(?<DPUrl>.+?)\?pf_rd") ){
+			$DP = $Matches.DPUrl
+		}
+
 		$DPUrl = "/dp/" + $DP
 
-		$dummy = $FullURL -match "(?<AmazonUrl>https://.+?)/"
-		$AmazonUrl = $Matches.AmazonUrl
-		$GoodsUrl = $AmazonUrl + $DPUrl
-	}
-
-	echo $GoodsUrl
-	$GoodsUrl | Set-Clipboard
-
-	if($Check){
-		if( Test-Path $ChromePath ){
-			if( $GoodsUrl -match "`.com" ){
-				echo "Sakura Checker is only supported by Amazon Japan"
-			}
-			else{
-				$ProdactSearchURL = $SakuraURL + $DP + "/"
-				. $ChromePath $ProdactSearchURL
-			}
+		if($FullURL -match "(?<AmazonUrl>https://.+?)/"){
+			$AmazonUrl = $Matches.AmazonUrl
 		}
 		else{
-			echo "Sakura Checker requires Google Chrome"
+			echo "Not URL"
+			return
 		}
+
+		$GoodsUrl = $AmazonUrl + $DPUrl
+		echo $GoodsUrl
+		$GoodsUrl | Set-Clipboard
+
+		if($Check){
+			if( Test-Path $ChromePath ){
+				if( $GoodsUrl -match "\.com" ){
+					echo "Sakura Checker is only supported by Amazon Japan"
+				}
+				else{
+					$ProdactSearchURL = $SakuraURL + $DP + "/"
+					. $ChromePath $ProdactSearchURL
+				}
+			}
+			else{
+				echo "Sakura Checker requires Google Chrome"
+			}
+		}
+	}
+	else{
+		echo "Not an Amazon URL"
 	}
 }

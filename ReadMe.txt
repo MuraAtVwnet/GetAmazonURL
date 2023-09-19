@@ -6,9 +6,13 @@ amazon.co.jp と amazon.com に対応しています
 
 Windows 上でしか動作確認していませんが、Mac Linux でも動くと思います
 
+
 ■ 使い方
 Amazon URL をクリップボードにコピーして、PowerShell プロンプト で GetAmazonURL と入力してください
 必要部分だけの URL がクリップボードにセットされます
+
+-Check オプションを指定すると、サクラチェッカー(https://sakura-checker.jp)でのチェックを表示します(要 Google Chrome)
+
 
 ■ Install 方法
 install.ps1 を実行してください
