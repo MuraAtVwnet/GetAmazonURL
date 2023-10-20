@@ -6,6 +6,7 @@ function GetAmazonURL([switch]$Check){
 	$SakuraURL = "https://sakura-checker.jp/search/"
 
 	$FullURL = Get-Clipboard
+	$FullURL = $FullURL -replace "\?tag.+", ""
 	if(($FullURL -match "https://www\.amazon\.co\.jp") -or ($FullURL -match "https://www\.amazon\.com")){
 		if( $FullURL.Contains("/product/") ){
 			if(($FullURL -match "/product/(?<DPUrl>.+?)/") -or ($FullURL -match "/product/(?<DPUrl>.+?)$")){
