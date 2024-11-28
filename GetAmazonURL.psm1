@@ -40,6 +40,8 @@ function GetAmazonURL([switch]$Check){
 		}
 
 		$GoodsUrl = $AmazonUrl + $DPUrl
+		$GoodsUrl = $GoodsUrl -replace "\?.+$", ""
+
 		echo $GoodsUrl
 		$GoodsUrl | Set-Clipboard
 
