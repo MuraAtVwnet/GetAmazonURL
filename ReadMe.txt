@@ -11,14 +11,23 @@ Windows 上でしか動作確認していませんが、Mac Linux でも動く�
 Amazon URL をクリップボードにコピーして、PowerShell プロンプト で GetAmazonURL と入力してください
 必要部分だけの URL がクリップボードにセットされます
 
--Check オプションを指定すると、サクラチェッカー(https://sakura-checker.jp)でのチェックを表示します(要 Google Chrome)
+-Check
+サクラチェッカー(https://sakura-checker.jp)でのチェックを表示します(要 Google Chrome)
+
+-VertionCheck
+スクリプトが更新されていたらオンライン更新します
 
 
-■ Install 方法
-install.ps1 を実行してください
+■ Online Install 方法
+# 以下コマンドでインストール
+$ModuleName = "GetAmazonURL"
+$GitHubName = "MuraAtVwnet"
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/$GitHubName/$ModuleName/master/OnlineInstall.ps1 -OutFile ~/OnlineInstall.ps1
+& ~/OnlineInstall.ps1
+
 
 ■ Uninstall 方法
-uninstall.ps1 を実行して下さい
+~/UnInstallGetAmazonURL.ps1 を実行して下さい
 (問い合わせが来たら Enter)
 
 ■ 動作確認環境

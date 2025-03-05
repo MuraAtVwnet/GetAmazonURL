@@ -1,19 +1,28 @@
-# Module Name
+﻿# モジュール名
 $ModuleName = "GetAmazonURL"
 
-# Module Path
-if(($PSVersionTable.Platform -eq "Win32NT") -or ($PSVersionTable.Platform -eq $null)){
+# モジュール Path
 $ModulePath = Join-Path (Split-Path $PROFILE -Parent) "Modules"
-}else{
-$ModulePath = Join-Path ($env:HOME) "/.local/share/powershell/Modules"}
 
+# モジュールを配置する Path
 $NewPath = Join-Path $ModulePath $ModuleName
 
-# Make Directory
+# ディレクトリ作成
 if( -not (Test-Path $NewPath)){
-	New-Item $NewPath -ItemType Directory -ErrorAction SilentlyContinue
+	New-Item $NewPath -ItemType Directory
 }
 
-# Copy Module
+# モジュールのコピー
 $ModuleFileName = Join-Path $PSScriptRoot ($ModuleName + ".psm1")
 Copy-Item $ModuleFileName $NewPath
+
+# バージョンファイルのコピー
+$Vertion = "Vertion" + $ModuleName + ".txt"
+$VertionFileName = Join-Path $PSScriptRoot "Vertion.txt"
+
+# ローカルインストール時のバージョンファイル
+if( Test-Path $VertionFileName ){
+	Copy-Item $VertionFileName ~/$Vertion
+}
+
+
